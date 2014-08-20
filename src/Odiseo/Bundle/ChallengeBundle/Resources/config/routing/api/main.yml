@@ -1,0 +1,5 @@
+odiseo_challenge_api_user:
+    type: rest
+    prefix: /user
+    resource: "Odiseo\Bundle\ChallengeBundle\Controller\Api\UserController"
+    name_prefix:  odiseo_challenge_api_user_ # naming collision
