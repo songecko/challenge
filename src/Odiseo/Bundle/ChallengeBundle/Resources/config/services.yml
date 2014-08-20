@@ -1,0 +1,7 @@
+parameters:
+#    odiseo_challenge.example.class: Odiseo\Bundle\ChallengeBundle\Example
+
+services:
+#    odiseo_challenge.example:
+#        class: %odiseo_challenge.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
