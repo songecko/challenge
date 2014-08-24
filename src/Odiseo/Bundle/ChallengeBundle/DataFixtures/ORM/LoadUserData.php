@@ -23,19 +23,26 @@ class LoadUserData extends DataFixture
     	
     	foreach ($videos as $video)
     	{	
-	    	$user = new User();
-	    	$slufiedName = strtolower(preg_replace('~[^\\pL\d]+~u', '-', $video['name']));
-	    	$user->setName($video['name']);
-	    	$user->setVideoUrl($video['videoUrl']);
-	    	$user->setUsername($slufiedName);
-	    	$user->setEmail($slufiedName);
-	    	$user->setPassword('123456');
-	    	$user->setEnabled(true);
-	    	$user->setRoles(array('ROLE_USER'));
+	    	$user = $this->createUser($video);
 	    	$manager->persist($user);
     	}
     	
     	$manager->flush();
+    }
+    
+    public function createUser($video)
+    {
+    	$user = new User();
+    	$slufiedName = strtolower(preg_replace('~[^\\pL\d]+~u', '-', $video['name']));
+    	$user->setName($video['name']);
+    	$user->setVideoUrl($video['videoUrl']);
+    	$user->setUsername($slufiedName);
+    	$user->setEmail($slufiedName);
+    	$user->setPassword('123456');
+    	$user->setEnabled(true);
+    	$user->setRoles(array('ROLE_USER'));
+    	
+    	return $user;
     }
     
     public function getOrder()

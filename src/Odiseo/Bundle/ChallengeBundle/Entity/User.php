@@ -4,16 +4,19 @@ namespace Odiseo\Bundle\ChallengeBundle\Entity;
 
 use DateTime;
 use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * User
  */
 class User extends BaseUser
 {
-    protected $id;
-    
     protected $name;
     protected $videoUrl;
+    protected $thumbnail;
+    protected $challengedBy;
+    protected $challenges;
     
     protected $createdAt;
     protected $updatedAt;
@@ -21,7 +24,9 @@ class User extends BaseUser
     public function __construct()
     {
     	parent::__construct();
+    	
     	$this->createdAt = new DateTime('now');
+    	$this->challenges = new ArrayCollection();
     }
     
     public function setName($name) 
@@ -47,6 +52,81 @@ class User extends BaseUser
     {
     	return $this->videoUrl;
     }
+    
+    public function setThumbnail($thumbnail)
+    {
+    	$this->thumbnail = $thumbnail;
+    	 
+    	return $this;
+    }
+    
+    public function getThumbnail()
+    {
+    	return $this->thumbnail;
+    }
+    
+    public function setChallengedBy($user)
+    {
+    	$this->challengedBy = $user;
+    
+    	return $this;
+    }
+    
+    public function getChallengedBy()
+    {
+    	return $this->challengedBy;
+    }
+    
+	public function setChallenges(Collection $challenges)
+	{
+		$this->challenges = $challenges;
+	
+		return $this;
+	}
+	
+	public function getChallenges()
+	{
+		return $this->challenges;
+	}
+	
+	public function clearChallenges()
+	{
+		$this->challenges->clear();
+	
+		return $this;
+	}
+	
+	public function countChallenges()
+	{
+		return $this->challenges->count();
+	}
+	
+	public function addChallenge(User $user)
+	{
+		if ($this->hasChallenge($user)) {
+			return $this;
+		}
+	
+		$user->setChallengedBy($this);
+		$this->challenges->add($user);
+	
+		return $this;
+	}
+	
+	public function removeChallenge(User $user)
+	{
+		if ($this->hasChallenge($user)) {
+			$user->setChallengedBy(null);
+			$this->challenges->removeElement($user);
+		}
+	
+		return $this;
+	}
+
+	public function hasChallenge(User $user)
+	{
+		return $this->challenges->contains($user);
+	}
     
     public function setCreatedAt($createdAt)
     {
@@ -78,6 +158,11 @@ class User extends BaseUser
     public function getCanonicalName()
     {
     	return $this->getName()?$this->getName():$this->getUsername();
+    }
+    
+    public function getDate()
+    {
+    	return $this->getCreatedAt()->format('Y-m-d H:i:s');	
     }
     
     public function __toString()

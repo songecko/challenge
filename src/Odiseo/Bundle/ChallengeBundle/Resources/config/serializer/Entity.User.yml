@@ -1,0 +1,31 @@
+Odiseo\Bundle\ChallengeBundle\Entity\User:
+    exclusion_policy: ALL
+    access_type: public_method # defaults to property
+    accessor_order: custom
+    custom_accessor_order: [id, name, createdAt, thumbnail, videoUrl, challengedBy, challenges]
+    properties:
+        name:
+            expose: true
+            groups: [public]
+#            max_depth: 2
+        createdAt:
+            expose: true
+            type: string
+            serialized_name: date
+            accessor: # access_type must be set to public_method
+                getter: getDate
+            groups: [public]
+        videoUrl:
+            expose: true
+            serialized_name: videoUrl
+            groups: [public]
+        thumbnail:
+            expose: true
+            groups: [public]
+        challengedBy:
+            expose: true
+            groups: [public]
+        challenges:
+            expose: true
+            groups: [public]
+            max_depth: 2

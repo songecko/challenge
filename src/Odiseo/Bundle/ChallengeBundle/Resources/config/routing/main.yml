@@ -2,3 +2,8 @@ odiseo_challenge_api:
     type: rest
     prefix: /api
     resource: "@OdiseoChallengeBundle/Resources/config/routing/api/main.yml"
+    
+    
+odiseo_challenge_doc_api:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc/api

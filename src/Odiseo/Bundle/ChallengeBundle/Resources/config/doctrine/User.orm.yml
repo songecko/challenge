@@ -29,4 +29,17 @@ Odiseo\Bundle\ChallengeBundle\Entity\User:
             gedmo:
               timestampable:
                 on: update
+    oneToMany:
+        challenges:
+            targetEntity: Odiseo\Bundle\ChallengeBundle\Entity\User
+            mappedBy: challengedBy
+            
+    manyToOne:
+        challengedBy:
+            targetEntity: Odiseo\Bundle\ChallengeBundle\Entity\User
+            inversedBy: challenges
+            joinColumn:
+                name: challenged_by
+                referencedColumnName: id
+            
     lifecycleCallbacks: {  }
