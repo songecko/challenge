@@ -1,0 +1,34 @@
+odiseo_challenge_user_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: odiseo_challenge.controller.user:indexAction
+        _sylius:
+            template: OdiseoChallengeBundle:Backend/User:index.html.twig
+            paginate: 100
+            
+odiseo_challenge_user_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: odiseo_challenge.controller.user:createAction
+        _sylius:
+            template: OdiseoChallengeBundle:Backend/User:create.html.twig
+            redirect: odiseo_challenge_user_create
+
+odiseo_challenge_user_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: odiseo_challenge.controller.user:updateAction
+        _sylius:
+            template: OdiseoChallengeBundle:Backend/User:update.html.twig
+            redirect: odiseo_challenge_user_update
+
+odiseo_challenge_user_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: odiseo_challenge.controller.user:deleteAction
+        _sylius:
+            redirect: odiseo_challenge_user_index

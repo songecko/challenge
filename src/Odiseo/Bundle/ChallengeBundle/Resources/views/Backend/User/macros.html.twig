@@ -1,0 +1,41 @@
+{% macro list(users) %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'GeckoBackendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'GeckoBackendBundle:Macros:misc.html.twig' as misc %}
+
+{% if users|length > 0 %}
+<div class="box">
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover"><tbody>
+			<tr>
+				<th>ID</th>
+				<th>Nombre Challenge</th>
+				<th></th>
+			</tr>
+			{% for user in users %}
+	        <tr>
+	        	<td>{{ user.id }}</td>
+				<td>{{ user.username }}</td>
+				<td></td>
+				<td>								
+					<div class="pull-right">	
+						{{ buttons.edit(path('odiseo_challenge_user_update', {'id': user.id})) }}					
+	                    <form action="{{ path('odiseo_challenge_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Estas seguro?')" method="post" style="display: inline;">
+    						<input type="hidden" name="_method" value="DELETE">
+    						<button class="btn btn-danger">
+        						<i class="icon-trash"></i><span>Eliminar</span>
+    						</button>
+						</form>
+	                </div>
+				</td>
+			</tr>
+	        {% endfor %}
+		</tbody></table>
+	</div>
+</div>
+{% else %}
+{{ alerts.info('gecko.backend.no_results'|trans) }}
+{% endif %}
+
+{% endmacro %}

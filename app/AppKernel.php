@@ -26,6 +26,7 @@ class AppKernel extends Kernel
         	new FOS\UserBundle\FOSUserBundle(),
             new Odiseo\Bundle\ChallengeBundle\OdiseoChallengeBundle(),
         	new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+        	new Gecko\BackendBundle\GeckoBackendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

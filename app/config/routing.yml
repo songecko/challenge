@@ -1,3 +1,7 @@
+gecko_backend:
+    resource: "@GeckoBackendBundle/Resources/config/routing/main.yml"
+    prefix:   /admin
+
 odiseo_challenge:
     resource: "@OdiseoChallengeBundle/Resources/config/routing/main.yml"
     prefix:   /

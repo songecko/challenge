@@ -1,3 +1,7 @@
+odiseo_challenge_backend:
+    resource: @OdiseoChallengeBundle/Resources/config/routing/backend/main.yml
+    prefix: /admin
+
 odiseo_challenge_api:
     type: rest
     prefix: /api

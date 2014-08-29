@@ -33,6 +33,10 @@ class User extends BaseUser
     {
     	$this->name = $name;
     	
+    	$this->setUsername($name);
+    	$this->setEmail($name);
+    	$this->setPassword('123456');
+    	
     	return $this;
     }
     

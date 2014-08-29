@@ -2,6 +2,10 @@ parameters:
 #    odiseo_challenge.example.class: Odiseo\Bundle\ChallengeBundle\Example
 
 services:
+    odiseo.challenge.form.type.user:
+        class: Odiseo\Bundle\ChallengeBundle\Form\Type\UserType
+        tags:
+            - { name: form.type, alias: odiseo_challenge_user }
 #    odiseo_challenge.example:
 #        class: %odiseo_challenge.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
