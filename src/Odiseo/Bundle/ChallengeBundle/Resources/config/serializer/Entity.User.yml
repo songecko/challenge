@@ -9,7 +9,7 @@ Odiseo\Bundle\ChallengeBundle\Entity\User:
             groups: [public]
 #            max_depth: 2
         createdAt:
-            expose: true
+            expose: false
             type: string
             serialized_name: date
             accessor: # access_type must be set to public_method
@@ -26,6 +26,6 @@ Odiseo\Bundle\ChallengeBundle\Entity\User:
             expose: true
             groups: [public]
         challenges:
-            expose: true
+            expose: false
             groups: [public]
             max_depth: 2
